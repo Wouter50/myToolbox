@@ -1,0 +1,14 @@
+Ideas to add to App:
+
+
+- Accounts
+
+Side bar: 
+- Qr scanner
+- Notes
+- Calculator
+
+
+Main screen: 
+- Weather
+- Flashlight

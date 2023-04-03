@@ -18,13 +18,16 @@
 
     <EditText
         android:id="@+id/startNumber"
-        android:layout_width="82dp"
+        android:layout_width="64dp"
         android:layout_height="48dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="111dp"
+        android:background="@drawable/edit_text_border"
         android:ems="10"
         android:hint="start"
         android:inputType="number"
+        android:singleLine="true"
+        android:textAlignment="center"
         app:layout_constraintEnd_toStartOf="@+id/textView3"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent" />
@@ -55,20 +58,22 @@
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/EndNumber"
+        app:layout_constraintEnd_toStartOf="@+id/endNumber"
         app:layout_constraintStart_toEndOf="@+id/startNumber"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/EndNumber"
-        android:layout_width="51dp"
+        android:id="@+id/endNumber"
+        android:layout_width="64dp"
         android:layout_height="48dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="111dp"
         android:layout_marginEnd="74dp"
+        android:background="@drawable/edit_text_border"
         android:ems="10"
         android:hint="end"
         android:inputType="number"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toTopOf="parent" />
@@ -89,12 +94,15 @@
 
     <TextView
         android:id="@+id/resultView"
-        android:layout_width="283dp"
-        android:layout_height="272dp"
+        android:layout_width="175dp"
+        android:layout_height="118dp"
         android:layout_marginStart="64dp"
         android:layout_marginEnd="64dp"
-        android:layout_marginBottom="64dp"
-        android:text="TextView"
+        android:layout_marginBottom="220dp"
+        android:lineSpacingExtra="8sp"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

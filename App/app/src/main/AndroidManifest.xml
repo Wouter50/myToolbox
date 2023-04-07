@@ -17,6 +17,13 @@
         android:theme="@style/Theme.MyToolbox"
         tools:targetApi="31">
         <activity
+            android:name=".QRResultScreenActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.QRscannerActivity"
             android:exported="false"
             android:label="QR Scanner">
@@ -36,7 +43,14 @@
             android:name=".ui.RandomNumberActivity"
             android:exported="false"
             android:label="Random Number Generator">
-
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.NameGeneratorActivity"
+            android:exported="false"
+            android:label="Goofy ahh name generator">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

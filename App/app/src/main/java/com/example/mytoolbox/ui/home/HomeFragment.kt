@@ -1,6 +1,8 @@
 package com.example.mytoolbox.ui.home
 
+import android.content.Context.CAMERA_SERVICE
 import android.content.Intent
+import android.hardware.camera2.CameraManager
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,12 +11,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import android.widget.ToggleButton
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.mytoolbox.R
 import com.example.mytoolbox.databinding.FragmentHomeBinding
 import com.example.mytoolbox.ui.HeadsOrTailsActivity
+import com.example.mytoolbox.ui.NameGeneratorActivity
 import com.example.mytoolbox.ui.QRscannerActivity
 import com.example.mytoolbox.ui.RandomNumberActivity
 import java.time.LocalDate
@@ -23,6 +27,9 @@ import java.time.format.DateTimeFormatter
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
+
+    lateinit var cameraManager: CameraManager
+    lateinit var cameraID: String
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -44,14 +51,45 @@ class HomeFragment : Fragment() {
 //        homeViewModel.text.observe(viewLifecycleOwner) {
 //            textView.text = it
 //        }
-
-        val flashLightButton = root.findViewById<Button>(R.id.flashLightButton)
-        flashLightButton.setOnClickListener{
-            Toast.makeText(context, "flashlight", Toast.LENGTH_SHORT).show()
+        cameraManager = activity?.getSystemService(CAMERA_SERVICE) as CameraManager
+        try {
+            // O means back camera unit,
+            // 1 means front camera unit
+            // on below line we are getting camera id
+            // for back camera as we will be using
+            // torch for back camera
+            cameraID = cameraManager.cameraIdList[0]
+        } catch (e: Exception) {
+            // on below line we are handling exception.
+            e.printStackTrace()
         }
 
-        val headsorTails = root.findViewById(R.id.HeadsOrTails) as Button
-        headsorTails.setOnClickListener{
+
+        val flashLightButton = root.findViewById<ToggleButton>(R.id.flashLightButton)
+        flashLightButton.setOnClickListener{
+            if (flashLightButton.isChecked) {
+                try {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        cameraManager.setTorchMode(cameraID, true)
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            } else {
+                try {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        cameraManager.setTorchMode(cameraID, false)
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+
+
+        }
+
+        val headsOrTails = root.findViewById(R.id.HeadsOrTails) as Button
+        headsOrTails.setOnClickListener{
             val intent = Intent (activity, HeadsOrTailsActivity::class.java)
             activity?.startActivity(intent)
         }
@@ -65,6 +103,12 @@ class HomeFragment : Fragment() {
         val qrScanner = root.findViewById<Button>(R.id.QrScanner)
         qrScanner.setOnClickListener{
             val intent = Intent (activity, QRscannerActivity::class.java)
+            activity?.startActivity(intent)
+        }
+
+        val nameGenerator = root.findViewById<Button>(R.id.nameGenerator)
+        nameGenerator.setOnClickListener{
+            val intent = Intent (activity, NameGeneratorActivity::class.java)
             activity?.startActivity(intent)
         }
 
@@ -86,5 +130,12 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                cameraManager.setTorchMode(cameraID, false)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }

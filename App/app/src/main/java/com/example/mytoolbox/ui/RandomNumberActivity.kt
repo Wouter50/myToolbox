@@ -28,16 +28,17 @@ class RandomNumberActivity : AppCompatActivity() {
         }
 
         giveNumber.setOnClickListener{      //crashes when crosses max length of int
-            val startNumberInt = Integer.parseInt(startNumber.text.toString())
-            val endNumberInt = Integer.parseInt(endNumber.text.toString())
-
-
-            if (endNumberInt < startNumberInt){
-                resultView.text = "Error: End number needs to be higher than start number"
-            }  else {
-                resultView.text = (startNumberInt..endNumberInt).random().toString()
+            if (startNumber.text.toString() == "" || endNumber.text.toString() == ""){
+                resultView.text = "Error: Missing numbers"
+            } else {
+                val startNumberInt = Integer.parseInt(startNumber.text.toString())
+                val endNumberInt = Integer.parseInt(endNumber.text.toString())
+                if (endNumberInt < startNumberInt){
+                    resultView.text = "Error: End number needs to be higher than start number"
+                } else {
+                    resultView.text = (startNumberInt..endNumberInt).random().toString()
+                 }
             }
-
 
         }
 

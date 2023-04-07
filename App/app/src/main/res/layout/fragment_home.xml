@@ -19,26 +19,14 @@
         app:layout_constraintTop_toBottomOf="@+id/RandomNumberGenerator" />
 
     <Button
-        android:id="@+id/flashLightButton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="11dp"
-        android:text="Light"
-        app:icon="@android:drawable/ic_lock_power_off"
-        app:layout_constraintEnd_toStartOf="@+id/QrScanner"
-        app:layout_constraintStart_toEndOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/HeadsOrTails" />
-
-    <Button
-        android:id="@+id/button2"
+        android:id="@+id/nameGenerator"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="11dp"
-        android:text="Button"
+        android:text="Goofy Ahh name generator"
+        android:textSize="13sp"
         app:layout_constraintEnd_toStartOf="@+id/HeadsOrTails"
         app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +41,7 @@
         android:layout_marginEnd="11dp"
         android:text="Heads or Tails"
         app:layout_constraintEnd_toStartOf="@+id/RandomNumberGenerator"
-        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintStart_toEndOf="@+id/nameGenerator"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -72,14 +60,13 @@
         android:id="@+id/button4"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="11dp"
         android:layout_marginTop="11dp"
         android:layout_marginEnd="11dp"
         android:text="Button"
         app:layout_constraintEnd_toStartOf="@+id/flashLightButton"
-        app:layout_constraintHorizontal_bias="0.004"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/nameGenerator" />
 
     <TextView
         android:id="@+id/textView"
@@ -96,5 +83,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ToggleButton
+        android:id="@+id/flashLightButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="11dp"
+        android:backgroundTint="@color/purple_200"
+        android:text="ToggleButton"
+        android:textColor="#FFFFFF"
+        android:textOff="Torch OFF"
+        android:textOn="Torch ON"
+        app:layout_constraintEnd_toStartOf="@+id/QrScanner"
+        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/HeadsOrTails"
+        tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

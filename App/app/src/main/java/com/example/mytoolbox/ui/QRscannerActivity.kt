@@ -36,7 +36,9 @@ class QRscannerActivity : AppCompatActivity() {
         codeScanner = CodeScanner(this, scannerView)
         codeScanner.decodeCallback = DecodeCallback {
             runOnUiThread {
-                Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, QRResultScreenActivity::class.java)
+                intent.putExtra("qrresult", it.text)
+                this.startActivity(intent)
             }
         }
         codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS

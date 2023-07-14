@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mytoolbox.MainActivity
@@ -40,8 +41,12 @@ class QRResultScreenActivity : AppCompatActivity() {
             this.startActivity(intent)
         }
         openLinkbutton.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(scanResult))
-            startActivity(browserIntent)
+            if (scanResult.contains("http")) {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(scanResult))
+                startActivity(browserIntent)
+            } else {
+                Toast.makeText(this, "Not a valid URL.", Toast.LENGTH_LONG).show()
+            }
         }
 
         copyResultButton.setOnClickListener{

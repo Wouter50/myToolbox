@@ -17,8 +17,14 @@
         android:theme="@style/Theme.MyToolbox"
         tools:targetApi="31">
         <activity
+            android:name=".ui.CalculatorActivity"
+            android:exported="false"
+            android:label="Calculator"
+            />
+        <activity
             android:name=".ui.QRResultScreenActivity"
-            android:exported="false">
+            android:exported="false"
+            android:label="QR Scanner">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

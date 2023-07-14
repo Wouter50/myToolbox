@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.mytoolbox.R
 import com.example.mytoolbox.databinding.FragmentHomeBinding
+import com.example.mytoolbox.ui.CalculatorActivity
 import com.example.mytoolbox.ui.HeadsOrTailsActivity
 import com.example.mytoolbox.ui.NameGeneratorActivity
 import com.example.mytoolbox.ui.QRscannerActivity
@@ -109,6 +110,12 @@ class HomeFragment : Fragment() {
         val nameGenerator = root.findViewById<Button>(R.id.nameGenerator)
         nameGenerator.setOnClickListener{
             val intent = Intent (activity, NameGeneratorActivity::class.java)
+            activity?.startActivity(intent)
+        }
+
+        val calculator = root.findViewById<Button>(R.id.calculatorButton)
+        calculator.setOnClickListener{
+            val intent = Intent (activity, CalculatorActivity::class.java)
             activity?.startActivity(intent)
         }
 

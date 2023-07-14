@@ -10,5 +10,4 @@ Side bar:
 
 
 Main screen: 
-- Weather
 - Flashlight

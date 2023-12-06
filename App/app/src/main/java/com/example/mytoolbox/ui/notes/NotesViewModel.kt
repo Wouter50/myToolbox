@@ -1,4 +1,4 @@
-package com.example.mytoolbox.ui.gallery
+package com.example.mytoolbox.ui.notes
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

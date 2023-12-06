@@ -1,4 +1,4 @@
-package com.example.mytoolbox.ui.gallery
+package com.example.mytoolbox.ui.notes
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -22,14 +22,14 @@ class NotesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val galleryViewModel =
+        val notesViewModel =
             ViewModelProvider(this).get(NotesViewModel::class.java)
 
         _binding = FragmentNotesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textGallery
-        galleryViewModel.text.observe(viewLifecycleOwner) {
+        notesViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

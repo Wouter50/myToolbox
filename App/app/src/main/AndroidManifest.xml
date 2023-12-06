@@ -6,6 +6,9 @@
 
     <uses-feature android:name="android.hardware.camera.any" />
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -17,14 +20,28 @@
         android:theme="@style/Theme.MyToolbox"
         tools:targetApi="31">
         <activity
+            android:name=".GPSActivity"
+            android:exported="false"
+            android:label="GPS Info"/>
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="true"
+            android:label="Settings"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ui.CalculatorActivity"
             android:exported="false"
             android:label="Calculator"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.QRResultScreenActivity"
             android:exported="false"
-            android:label="QR Scanner">
+            android:label="QR Scanner"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -40,7 +57,8 @@
         <activity
             android:name=".ui.HeadsOrTailsActivity"
             android:exported="false"
-            android:label="Heads or Tails">
+            android:label="Heads or Tails"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -48,7 +66,8 @@
         <activity
             android:name=".ui.RandomNumberActivity"
             android:exported="false"
-            android:label="Random Number Generator">
+            android:label="Random Number Generator"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -56,7 +75,8 @@
         <activity
             android:name=".ui.NameGeneratorActivity"
             android:exported="false"
-            android:label="Goofy ahh name generator">
+            android:label="Goofy ahh name generator"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

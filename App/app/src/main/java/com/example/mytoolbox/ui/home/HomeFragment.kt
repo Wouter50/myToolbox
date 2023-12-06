@@ -15,6 +15,7 @@ import android.widget.ToggleButton
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.mytoolbox.GPSActivity
 import com.example.mytoolbox.R
 import com.example.mytoolbox.databinding.FragmentHomeBinding
 import com.example.mytoolbox.ui.CalculatorActivity
@@ -42,16 +43,17 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this)[HomeViewModel::class.java]
+        //val homeViewModel =
+        //    ViewModelProvider(this)[HomeViewModel::class.java]
+        //        val textView: TextView = binding.textHome
+//        homeViewModel.text.observe(viewLifecycleOwner) {
+//            textView.text = it
+//        }
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
+
         cameraManager = activity?.getSystemService(CAMERA_SERVICE) as CameraManager
         try {
             // O means back camera unit,
@@ -116,6 +118,12 @@ class HomeFragment : Fragment() {
         val calculator = root.findViewById<Button>(R.id.calculatorButton)
         calculator.setOnClickListener{
             val intent = Intent (activity, CalculatorActivity::class.java)
+            activity?.startActivity(intent)
+        }
+
+        val gpsPage = root.findViewById<Button>(R.id.GPS_info)
+        gpsPage.setOnClickListener{
+            val intent = Intent (activity, GPSActivity::class.java)
             activity?.startActivity(intent)
         }
 

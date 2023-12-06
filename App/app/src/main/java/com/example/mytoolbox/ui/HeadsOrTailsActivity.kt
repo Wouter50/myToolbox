@@ -1,12 +1,15 @@
 package com.example.mytoolbox.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextSwitcher
 import android.widget.TextView
+import android.widget.ViewSwitcher
+import androidx.appcompat.app.AppCompatActivity
 import com.example.mytoolbox.MainActivity
 import com.example.mytoolbox.R
+
 
 class HeadsOrTailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,7 +19,12 @@ class HeadsOrTailsActivity : AppCompatActivity() {
 
         val backButton = findViewById<Button>(R.id.hodbackButton)
         val headsOrTailsButton = findViewById<Button>(R.id.TossCoin)
-        val textViewResult = findViewById<TextView>(R.id.headsOrTailsResult)
+        var textViewResult = findViewById<TextSwitcher>(R.id.headsOrTailsResult)
+        textViewResult.setFactory { TextView(this) }
+
+        textViewResult.setInAnimation(this, android.R.anim.slide_in_left)
+        textViewResult.setOutAnimation(this, android.R.anim.slide_out_right)
+
 
         backButton.setOnClickListener{
             val intent = Intent (this, MainActivity::class.java)
@@ -31,7 +39,7 @@ class HeadsOrTailsActivity : AppCompatActivity() {
                     "Error, Please retry"
                 }
             }
-            textViewResult.text = headsOrTailsResultString
+            textViewResult.setText(headsOrTailsResultString)
         }
     }
 }

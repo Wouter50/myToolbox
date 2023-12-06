@@ -7,16 +7,15 @@ import android.widget.Button
 import android.widget.TextView
 import com.example.mytoolbox.MainActivity
 import com.example.mytoolbox.R
-import kotlin.properties.Delegates
 
 class CalculatorActivity : AppCompatActivity() {
 
     lateinit var textViewScreen: TextView
     lateinit var textViewResults: TextView
-    lateinit var resultString: String
-    var calculatingint = 0
+    lateinit var lastUserString: String
+    var calculatingDouble: Double = 0.0
 
-    var firstInt = 0
+    var firstDouble = 0.0
 
     val inputList = ArrayList<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +32,7 @@ class CalculatorActivity : AppCompatActivity() {
             this.startActivity(intent)
         }
 
-        resultString = ""
+        lastUserString = ""
 
         //number buttons
         val button0 = findViewById<Button>(R.id.cal_Button_0)
@@ -54,58 +53,61 @@ class CalculatorActivity : AppCompatActivity() {
         val plusButton = findViewById<Button>(R.id.cal_Button_plus)
         val minusButton = findViewById<Button>(R.id.cal_Button_minus)
         val timesButton = findViewById<Button>(R.id.cal_Button_x)
-        val devideButton = findViewById<Button>(R.id.cal_Button_Divide)
+        val divideButton = findViewById<Button>(R.id.cal_Button_Divide)
         val equalsButton = findViewById<Button>(R.id.cal_Button_equals)
+        val taxButton = findViewById<Button>(R.id.cal_Button_tax)
+
+        updatetextViewResults()
 
         //number buttons onclicks
         button0.setOnClickListener {
             inputList.add("0")
-            resultString += "0"
+            lastUserString += "0"
             updatetextViewScreen()
         }
         button1.setOnClickListener {
             inputList.add("1")
-            resultString += "1"
+            lastUserString += "1"
             updatetextViewScreen()
         }
         button2.setOnClickListener {
             inputList.add("2")
-            resultString += "2"
+            lastUserString += "2"
             updatetextViewScreen()
         }
         button3.setOnClickListener {
             inputList.add("3")
-            resultString += "3"
+            lastUserString += "3"
             updatetextViewScreen()
         }
         button4.setOnClickListener {
             inputList.add("4")
-            resultString += "4"
+            lastUserString += "4"
             updatetextViewScreen()
         }
         button5.setOnClickListener {
             inputList.add("5")
-            resultString += "5"
+            lastUserString += "5"
             updatetextViewScreen()
         }
         button6.setOnClickListener {
             inputList.add("6")
-            resultString += "6"
+            lastUserString += "6"
             updatetextViewScreen()
         }
         button7.setOnClickListener {
             inputList.add("7")
-            resultString += "7"
+            lastUserString += "7"
             updatetextViewScreen()
         }
         button8.setOnClickListener {
             inputList.add("8")
-            resultString += "8"
+            lastUserString += "8"
             updatetextViewScreen()
         }
         button9.setOnClickListener {
             inputList.add("9")
-            resultString += "9"
+            lastUserString += "9"
             updatetextViewScreen()
         }
 
@@ -113,8 +115,8 @@ class CalculatorActivity : AppCompatActivity() {
         //function buttons listeners
         clearButton.setOnClickListener {
             inputList.clear()
-            resultString = ""
-            calculatingint = 0
+            lastUserString = ""
+            calculatingDouble = 0.0
             updatetextViewScreen()
             updatetextViewResults()
         }
@@ -127,53 +129,70 @@ class CalculatorActivity : AppCompatActivity() {
         commaButton.setOnClickListener {
             if(!inputList.contains(".")){
                 inputList.add(".")
-                resultString += "."
+                lastUserString += "."
                 updatetextViewScreen()
             }
         }
         plusButton.setOnClickListener {
             if(inputList.last() != "+"){
                 inputList.add("+")
+                saveFirstInts()
             }
             updatetextViewScreen()
-            saveFirstInts()
+
         }
         minusButton.setOnClickListener {
             if(inputList.last() != "-"){
                 inputList.add("-")
+                saveFirstInts()
             }
             updatetextViewScreen()
-            saveFirstInts()
+
         }
         timesButton.setOnClickListener {
             if(inputList.last() != "x"){
                 inputList.add("x")
+                saveFirstInts()
             }
             updatetextViewScreen()
-            saveFirstInts()
+
         }
-        devideButton.setOnClickListener {
+        divideButton.setOnClickListener {
             if(inputList.last() != "/"){
                 inputList.add("/")
+                saveFirstInts()
             }
             updatetextViewScreen()
-            saveFirstInts()
+
         }
         equalsButton.setOnClickListener {
-            if (resultString.isNotEmpty()) {
-                calculatingint = resultString.toInt()
+            if (lastUserString.isNotEmpty()) {
+                calculatingDouble = lastUserString.toDouble()
+                var result = ""
                 if (inputList.contains("+")) {
-                    resultString = firstInt.plus(calculatingint).toString()
+                    result = firstDouble.plus(calculatingDouble).toString()
                 } else if (inputList.contains("-")) {
-                    resultString = firstInt.minus(calculatingint).toString()
+                    result = firstDouble.minus(calculatingDouble).toString()
                 } else if (inputList.contains("/")) {
-                    resultString = firstInt.div(calculatingint).toString()
+                    result = firstDouble.div(calculatingDouble).toString()
                 } else if (inputList.contains("x")) {
-                    resultString = firstInt.times(calculatingint).toString()
+                    result = firstDouble.times(calculatingDouble).toString()
                 }
-                textViewResults.text = resultString
+                textViewResults.text = result
+                lastUserString = result
                 inputList.clear()
-                inputList.add(resultString)
+                inputList.add(result)
+            }
+        }
+        taxButton.setOnClickListener {
+            if(lastUserString.isNotEmpty()){
+                val calculateDouble = lastUserString.toDouble()
+                var result = ""
+                result = calculateDouble.times(1.21).toString()
+                textViewResults.text = result
+                lastUserString = result
+                inputList.clear()
+                inputList.add(result)
             }
         }
 
@@ -183,11 +202,11 @@ class CalculatorActivity : AppCompatActivity() {
         textViewScreen.text = inputList.joinToString (separator = "")
     }
     fun updatetextViewResults(){
-        textViewResults.text = calculatingint.toString()
+        textViewResults.text = calculatingDouble.toString()
     }
 
     fun saveFirstInts(){
-        firstInt = resultString.toInt()
-        resultString = ""
+        firstDouble = lastUserString.toDouble()
+        lastUserString = ""
     }
 }

@@ -100,7 +100,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="82dp"
-        android:background="@color/purple_500"
+        android:background="?attr/colorPrimary"
         android:text="toggle automatic updatte"
         android:textColor="@android:color/secondary_text_dark"
         android:textOff="Automatic update off"

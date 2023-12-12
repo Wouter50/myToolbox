@@ -134,7 +134,7 @@ class CalculatorActivity : AppCompatActivity() {
             }
         }
         plusButton.setOnClickListener {
-            if(inputList.last() != "+"){
+            if(inputList.isNotEmpty() && inputList.last() != "+"){
                 inputList.add("+")
                 saveFirstInts()
             }
@@ -142,7 +142,7 @@ class CalculatorActivity : AppCompatActivity() {
 
         }
         minusButton.setOnClickListener {
-            if(inputList.last() != "-"){
+            if(inputList.isNotEmpty() && inputList.last() != "-"){
                 inputList.add("-")
                 saveFirstInts()
             }
@@ -150,7 +150,7 @@ class CalculatorActivity : AppCompatActivity() {
 
         }
         timesButton.setOnClickListener {
-            if(inputList.last() != "x"){
+            if(inputList.isNotEmpty() && inputList.last() != "x"){
                 inputList.add("x")
                 saveFirstInts()
             }
@@ -158,7 +158,7 @@ class CalculatorActivity : AppCompatActivity() {
 
         }
         divideButton.setOnClickListener {
-            if(inputList.last() != "/"){
+            if(inputList.isNotEmpty() && inputList.last() != "/"){
                 inputList.add("/")
                 saveFirstInts()
             }
@@ -206,7 +206,8 @@ class CalculatorActivity : AppCompatActivity() {
     }
 
     fun saveFirstInts(){
-        firstDouble = lastUserString.toDouble()
-        lastUserString = ""
+            firstDouble = lastUserString.toDouble()
+            lastUserString = ""
+
     }
 }

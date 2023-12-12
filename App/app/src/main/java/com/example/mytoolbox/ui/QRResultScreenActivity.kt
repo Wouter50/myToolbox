@@ -1,5 +1,6 @@
 package com.example.mytoolbox.ui
 
+import android.content.ActivityNotFoundException
 import android.content.ClipData
 import android.content.ClipDescription
 import android.content.ClipboardManager
@@ -41,12 +42,13 @@ class QRResultScreenActivity : AppCompatActivity() {
             this.startActivity(intent)
         }
         openLinkbutton.setOnClickListener {
-            if (scanResult.contains("http")) {
+            try{
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(scanResult))
                 startActivity(browserIntent)
-            } else {
+            } catch(e: ActivityNotFoundException) {
                 Toast.makeText(this, "Not a valid URL.", Toast.LENGTH_LONG).show()
             }
+
         }
 
         copyResultButton.setOnClickListener{

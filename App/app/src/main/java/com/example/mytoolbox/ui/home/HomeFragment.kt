@@ -10,17 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.annotation.RequiresApi
+import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.mytoolbox.GPSActivity
 import com.example.mytoolbox.R
 import com.example.mytoolbox.databinding.FragmentHomeBinding
 import com.example.mytoolbox.ui.CalculatorActivity
 import com.example.mytoolbox.ui.HeadsOrTailsActivity
-import com.example.mytoolbox.ui.NameGeneratorActivity
+import com.example.mytoolbox.ui.WordGeneratorActivity
 import com.example.mytoolbox.ui.QRscannerActivity
 import com.example.mytoolbox.ui.RandomNumberActivity
 import java.time.LocalDate
@@ -74,6 +73,7 @@ class HomeFragment : Fragment() {
                 try {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         cameraManager.setTorchMode(cameraID, true)
+                        flashLightButton.setBackgroundResource(R.drawable.baseline_flashlight_on_24)
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -82,12 +82,12 @@ class HomeFragment : Fragment() {
                 try {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         cameraManager.setTorchMode(cameraID, false)
+                        flashLightButton.setBackgroundResource(R.drawable.baseline_flashlight_off_24)
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
-
 
         }
 
@@ -109,9 +109,9 @@ class HomeFragment : Fragment() {
             activity?.startActivity(intent)
         }
 
-        val nameGenerator = root.findViewById<Button>(R.id.nameGenerator)
-        nameGenerator.setOnClickListener{
-            val intent = Intent (activity, NameGeneratorActivity::class.java)
+        val wordGenerator = root.findViewById<Button>(R.id.nameGenerator)
+        wordGenerator.setOnClickListener{
+            val intent = Intent (activity, WordGeneratorActivity::class.java)
             activity?.startActivity(intent)
         }
 
@@ -134,10 +134,6 @@ class HomeFragment : Fragment() {
         val textview = root.findViewById<TextView>(R.id.textView)
         val helloText = "Hello Wouter, today is "
         textview.text = helloText + formattedDate
-
-
-
-
 
         return root
     }

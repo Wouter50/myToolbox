@@ -73,9 +73,9 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.NameGeneratorActivity"
+            android:name=".ui.WordGeneratorActivity"
             android:exported="false"
-            android:label="Goofy ahh name generator"
+            android:label="Random Word generator"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"

@@ -82,6 +82,15 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".ui.games.TicTacToeActivity"
+            android:exported="false"
+            android:label="Tic Tac Toe"
+            android:screenOrientation="portrait">
+        <meta-data
+            android:name="android.app.lib_name"
+            android:value="" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"

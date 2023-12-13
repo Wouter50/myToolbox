@@ -1,14 +1,10 @@
 package com.example.mytoolbox.ui
 
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.TextSwitcher
 import android.widget.TextView
-import android.widget.Toast
-import android.widget.ViewSwitcher
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mytoolbox.MainActivity
 import com.example.mytoolbox.R
@@ -17,18 +13,26 @@ import com.example.mytoolbox.R
 class HeadsOrTailsActivity : AppCompatActivity() {
     lateinit var coinImageView: ImageView
     lateinit var headsOrTailsButton: Button
+    lateinit var amountHeadsTextView: TextView
+    lateinit var amountTailsTextView: TextView
+
+    var amountHeadsInt: Int = 0
+    var amountTailsInt: Int = 0
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_heads_or_tails)
 
+        amountHeadsTextView = findViewById(R.id.amountHeadsTextView)
+        amountTailsTextView = findViewById(R.id.amountTailsTextView)
+
 
         val backButton = findViewById<Button>(R.id.hodbackButton)
-        headsOrTailsButton = findViewById<Button>(R.id.TossCoin)
+        headsOrTailsButton = findViewById(R.id.TossCoin)
 
-
-
-
-        coinImageView = findViewById<ImageView>(R.id.coinImageView)
+        coinImageView = findViewById(R.id.coinImageView)
 
 
         backButton.setOnClickListener{
@@ -40,15 +44,15 @@ class HeadsOrTailsActivity : AppCompatActivity() {
             val randomNumber = (1..2).random()
 
             if (randomNumber == 1){
-                flipTheCoin(R.drawable.ic_coin_heads, "Heads")
+                flipTheCoin(R.drawable.ic_coin_heads)
             } else {
-                flipTheCoin(R.drawable.ic_coin_tails, "Tails")
+                flipTheCoin(R.drawable.ic_coin_tails)
             }
 
         }
 
     }
-    private fun flipTheCoin(imageId: Int, coinSide:String){
+    private fun flipTheCoin(imageId: Int){
         coinImageView.animate().apply {
             coinImageView.setImageResource(R.drawable.ic_coin_empty)
             duration = 1000
@@ -56,8 +60,22 @@ class HeadsOrTailsActivity : AppCompatActivity() {
             headsOrTailsButton.isClickable = false
         }.withEndAction {
             coinImageView.setImageResource(imageId)
-            Toast.makeText(this, coinSide, Toast.LENGTH_SHORT).show()
             headsOrTailsButton.isClickable = true
+            if(imageId == R.drawable.ic_coin_heads){
+                updateCounter("heads")
+            } else {
+                updateCounter("tails")
+            }
         }
+    }
+    private fun updateCounter(result: String){
+        if (result == "heads"){
+            amountHeadsInt++
+            amountHeadsTextView.text = amountHeadsInt.toString()
+        } else {
+            amountTailsInt++
+            amountTailsTextView.text = amountTailsInt.toString()
+        }
+
     }
 }

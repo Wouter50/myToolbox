@@ -9,7 +9,7 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_notes">Notes</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_games">Games</string>
     <!-- Preference Titles -->
     <string name="theme_header">Theme</string>
     <string name="sync_header">Sync</string>

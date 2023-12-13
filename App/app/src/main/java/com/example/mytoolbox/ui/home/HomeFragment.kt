@@ -62,7 +62,6 @@ class HomeFragment : Fragment() {
             // torch for back camera
             cameraID = cameraManager.cameraIdList[0]
         } catch (e: Exception) {
-            // on below line we are handling exception.
             e.printStackTrace()
         }
 
